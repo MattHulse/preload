@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #7e7c7c;
+}
+
+#game {
+    margin: 20px auto;
+    width: 600px; /* Make the view screen narrower */
+    height: 600px; /* Restore the height to ensure zones are displayed */
+    background: none; /* Remove the background */
+    border: none; /* Remove the border */
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shelf {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%; /* Set the width of the shelves */
+}
+
+.zone {
+    width: 100%; /* Make zones stretch the length of the shelf */
+    height: calc(100% / 4); /* Adjust height to fit within viewport and remove gaps */
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 50px;
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none; /* Prevent text selection */
+}
+
+.zone:hover,
+.zone.drag-over {
+    background: #ddd; /* Add hover effect */
+}
+
+#sticker {
+    position: absolute;
+    bottom: 60px; /* Move the sticker up to make more space for the feedback */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 40px;
+    background: white;
+    border: 2px solid black;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s ease; /* Add transition for smooth shrinking */
+    user-select: none; /* Prevent text selection */
+}
+
+#sticker.dragging {
+    transform: translateX(-50%) scale(0.5); /* Shrink the sticker by 50% */
+}
+
+#feedback {
+    margin-top: 100px; /* Move the feedback down to be below the bottom shelves */
+    padding: 10px;
+    background: white; /* Add white background */
+    border: 2px solid black; /* Add border */
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    color: black; /* Show text initially */
+    transition: color 0.2s ease, background 0.2s ease, border 0.2s ease; /* Add transition for smooth color change */
+}
+
+#feedback.hide {
+    color: transparent; /* Hide text */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+}
+
+#toggleZoneIds {
+    margin: 10px;
+    position: relative;
+    z-index: 10; /* Ensure the checkbox is above other elements */
+}
+
+#toggleZoneIdsLabel {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Skew information for shelves */
+.shelf.rhs {
+    transform: skewY(-2deg);
+}
+
+.shelf.lhs {
+    transform: skewY(2deg);
+}
+
+/* Positioning for top shelves */
+.shelf.lhs.top,
+.shelf.rhs.top {
+    z-index: 3;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.shelf.lhs.top {
+    order: 1;
+}
+
+.shelf.rhs.top {
+    order: 7;
+}
+
+/* Positioning for middle shelves */
+.shelf.middle {
+    z-index: 2;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    margin-top: 30px; /* Shift down by 20px */
+}
+
+.shelf.lhs.middle {
+    order: 2;
+}
+
+.shelf.rhs.middle {
+    order: 6;
+}
+
+/* Positioning for bottom shelves */
+.shelf.bottom {
+    z-index: 1;
+    margin-top: 60px; /* Shift down by 40px */
+}
+
+.shelf.lhs.bottom .zone,
+.shelf.rhs.bottom .zone {
+    background: #f5f5f5; /* Match the floor background */
+}
+
+.shelf.lhs.bottom .zone:hover,
+.shelf.rhs.bottom .zone:hover {
+    background: #ddd; /* Add hover effect */
+}
+
+.shelf.lhs.bottom {
+    order: 3;
+}
+
+.shelf.rhs.bottom {
+    order: 5;
+}
+
+.walkway {
+    order: 4;
+    width: 45%; /* Set the width of the walkway */
+    height: 100%; /* Set the height of the walkway */
+    background: #acacac; /* Match the floor background */
+    border: thin; /* No border */
+    margin-top: 65px;
+}
