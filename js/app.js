@@ -91,6 +91,10 @@ gameContainer.appendChild(stickerFeedbackContainer);
 stickerFeedbackContainer.appendChild(stickerDisplay);
 stickerFeedbackContainer.appendChild(feedback);
 
+// Set initial instructions
+feedback.innerText = "Click the correct zone for the sticker's address!";
+feedback.style.visibility = "visible"; // Ensure the feedback is visible initially
+
 // Toggle zone IDs visibility
 toggleZoneIds.addEventListener("change", () => {
     const zones = document.querySelectorAll(".zone");

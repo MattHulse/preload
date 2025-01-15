@@ -6,23 +6,31 @@ body {
     background: #7e7c7c;
 }
 
+h1 {
+    color: white; /* Set title color to white */
+    border: 2px solid purple; /* Add purple border */
+    background-color: purple; /* Set background color to purple */
+    padding: 10px; /* Add padding */
+    display: inline-block; /* Ensure the border wraps around the text */
+}
+
 #game {
-    margin: 20px auto;
-    width: 90vw; /* Use viewport width for responsiveness */
-    height: 90vh; /* Use viewport height for responsiveness */
+    margin: -30px auto; /* Shift up further */
+    width: 375px; /* Set a fixed width suitable for phone screens */
+    height: 600px; /* Reduce the height */
     background: none; /* Remove the background */
     border: none; /* Remove the border */
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
 }
 
 .shelf {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 60%; /* Reduce the height of the shelves */
     width: 40%; /* Set the width of the shelves */
 }
 
@@ -31,7 +39,7 @@ body {
     height: calc(100% / 4); /* Adjust height to fit within viewport and remove gaps */
     border: 1px solid #ccc;
     text-align: center;
-    line-height: 50px;
+    line-height: 40px; /* Adjust line height */
     background: #fff;
     cursor: pointer;
     transition: background 0.2s ease;
@@ -39,6 +47,7 @@ body {
     align-items: center;
     justify-content: center;
     user-select: none; /* Prevent text selection */
+    font-size: 12px; /* Reduce font size */
 }
 
 .zone:hover,
@@ -48,7 +57,7 @@ body {
 
 .sticker-feedback-container {
     position: absolute;
-    bottom: -240px; /* Move further down to be below the floor shelf */
+    bottom: 25px; /* Shift up further */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -57,14 +66,15 @@ body {
 }
 
 #sticker {
-    padding: 20px 40px;
+    padding: 10px 20px; /* Adjust padding */
     background: white;
     border: 2px solid black;
-    font-size: 30px;
+    font-size: 16px; /* Reduce font size */
     font-weight: bold;
     display: inline-block;
     transition: transform 0.2s ease; /* Add transition for smooth shrinking */
     user-select: none; /* Prevent text selection */
+    margin-top: 10px;
     margin-bottom: 10px; /* Add margin to separate from feedback */
 }
 
@@ -73,20 +83,25 @@ body {
 }
 
 #feedback {
-    padding: 10px;
+    padding: 5px; /* Adjust padding */
     background: white; /* Add white background */
     border: 2px solid black; /* Add border */
-    font-size: 20px;
+    font-size: 14px; /* Reduce font size */
     font-weight: bold;
     display: inline-block;
     color: black; /* Show text initially */
     transition: color 0.2s ease, background 0.2s ease, border 0.2s ease; /* Add transition for smooth color change */
+    margin-bottom: 40px; /* Add more margin to separate from toggleZoneIdsLabel */
+    height: 30px; /* Set a fixed height */
+    visibility: hidden; /* Hide initially */
+}
+
+#feedback.show {
+    visibility: visible; /* Show feedback */
 }
 
 #feedback.hide {
-    color: transparent; /* Hide text */
-    background: none; /* Remove background */
-    border: none; /* Remove border */
+    visibility: hidden; /* Hide feedback */
 }
 
 #toggleZoneIds {
@@ -101,6 +116,7 @@ body {
     border: 1px solid #ccc;
     background: #f9f9f9;
     cursor: pointer;
+    margin-top: -10px; /* Ensure it is below the result */
 }
 
 /* Skew information for shelves */
@@ -168,48 +184,11 @@ body {
 
 .walkway {
     order: 4;
-    width: 45%; /* Set the width of the walkway */
-    height: 100%; /* Set the height of the walkway */
+    width: 20%; /* Set the width of the walkway */
+    height: 60%; /* Reduce the height to match the shelves */
     background: #acacac; /* Match the floor background */
     border: thin; /* No border */
-    margin-top: 65px;
+    margin-top: 60px; /* Align with bottom shelves */
 }
 
-/* Media query for small screens */
-@media (max-width: 500px) {
-    #game {
-        width: 100vw; /* Make the game container full width */
-        height: auto; /* Adjust height to auto */
-        flex-direction: row; /* Keep shelves side by side */
-        flex-wrap: wrap; /* Allow wrapping if necessary */
-        justify-content: center; /* Center the content */
-    }
-
-    .shelf {
-        width: 45%; /* Make shelves smaller */
-        height: auto; /* Adjust height to auto */
-        flex-direction: column; /* Ensure zones are stacked vertically */
-        justify-content: flex-start; /* Align zones to the top */
-        margin: 5px; /* Add margin for spacing */
-    }
-
-    .zone {
-        width: 100%; /* Make zones full width */
-        height: 50px; /* Set a fixed height */
-        margin: 5px 0; /* Add margin for spacing */
-    }
-
-    .sticker-feedback-container {
-        bottom: -120px; /* Adjust position for smaller screens */
-    }
-d
-    #sticker {
-        font-size: 20px; /* Reduce font size */
-        padding: 10px 20px; /* Adjust padding */
-    }
-
-    #feedback {
-        font-size: 16px; /* Reduce font size */
-        padding: 5px; /* Adjust padding */
-    }
-}
+/* Remove media queries as they are no longer needed */
