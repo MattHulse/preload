@@ -8,8 +8,8 @@ body {
 
 #game {
     margin: 20px auto;
-    width: 600px; /* Make the view screen narrower */
-    height: 600px; /* Restore the height to ensure zones are displayed */
+    width: 90vw; /* Use viewport width for responsiveness */
+    height: 90vh; /* Use viewport height for responsiveness */
     background: none; /* Remove the background */
     border: none; /* Remove the border */
     position: relative;
@@ -46,11 +46,17 @@ body {
     background: #ddd; /* Add hover effect */
 }
 
-#sticker {
+.sticker-feedback-container {
     position: absolute;
-    bottom: 60px; /* Move the sticker up to make more space for the feedback */
+    bottom: -240px; /* Move further down to be below the floor shelf */
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sticker {
     padding: 20px 40px;
     background: white;
     border: 2px solid black;
@@ -59,6 +65,7 @@ body {
     display: inline-block;
     transition: transform 0.2s ease; /* Add transition for smooth shrinking */
     user-select: none; /* Prevent text selection */
+    margin-bottom: 10px; /* Add margin to separate from feedback */
 }
 
 #sticker.dragging {
@@ -66,7 +73,6 @@ body {
 }
 
 #feedback {
-    margin-top: 100px; /* Move the feedback down to be below the bottom shelves */
     padding: 10px;
     background: white; /* Add white background */
     border: 2px solid black; /* Add border */
@@ -167,4 +173,43 @@ body {
     background: #acacac; /* Match the floor background */
     border: thin; /* No border */
     margin-top: 65px;
+}
+
+/* Media query for small screens */
+@media (max-width: 500px) {
+    #game {
+        width: 100vw; /* Make the game container full width */
+        height: auto; /* Adjust height to auto */
+        flex-direction: row; /* Keep shelves side by side */
+        flex-wrap: wrap; /* Allow wrapping if necessary */
+        justify-content: center; /* Center the content */
+    }
+
+    .shelf {
+        width: 45%; /* Make shelves smaller */
+        height: auto; /* Adjust height to auto */
+        flex-direction: column; /* Ensure zones are stacked vertically */
+        justify-content: flex-start; /* Align zones to the top */
+        margin: 5px; /* Add margin for spacing */
+    }
+
+    .zone {
+        width: 100%; /* Make zones full width */
+        height: 50px; /* Set a fixed height */
+        margin: 5px 0; /* Add margin for spacing */
+    }
+
+    .sticker-feedback-container {
+        bottom: -120px; /* Adjust position for smaller screens */
+    }
+d
+    #sticker {
+        font-size: 20px; /* Reduce font size */
+        padding: 10px 20px; /* Adjust padding */
+    }
+
+    #feedback {
+        font-size: 16px; /* Reduce font size */
+        padding: 5px; /* Adjust padding */
+    }
 }

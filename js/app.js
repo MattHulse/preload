@@ -82,6 +82,15 @@ const walkway = document.createElement("div");
 walkway.className = "walkway";
 gameContainer.appendChild(walkway);
 
+// Add a container for the sticker and feedback
+const stickerFeedbackContainer = document.createElement("div");
+stickerFeedbackContainer.className = "sticker-feedback-container";
+gameContainer.appendChild(stickerFeedbackContainer);
+
+// Move sticker and feedback into the new container
+stickerFeedbackContainer.appendChild(stickerDisplay);
+stickerFeedbackContainer.appendChild(feedback);
+
 // Toggle zone IDs visibility
 toggleZoneIds.addEventListener("change", () => {
     const zones = document.querySelectorAll(".zone");
